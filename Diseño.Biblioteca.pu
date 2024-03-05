@@ -1,0 +1,45 @@
+@startuml Biblioteca
+
+entity Usuario {
+  * ID: int
+  --
+  * nombre: string
+  * lista_de_libros_reservados: list<Libro>
+}
+
+entity Libro {
+  * ISBN: int
+  --
+  * titulo: string
+  * autor: Autor
+  * categorias: list<Categoria>
+  * reseñas: list<Reseña>
+}
+
+entity Reseña {
+  * ID: int
+  --
+  * usuario: Usuario
+  * libro: Libro
+  * contenido: string
+}
+
+entity Autor {
+  * ID: int
+  --
+  * nombre: string
+  * libros: list<Libro>
+}
+
+entity Categoria {
+  * ID: int
+  --
+  * nombre: string
+}
+
+Usuario ||--o{ Libro
+Libro ||--o{ Reseña
+Autor ||--o{ Libro
+Categoria }--o{ Libro
+
+@enduml
